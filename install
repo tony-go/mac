@@ -1,0 +1,47 @@
+#!/bin/bash
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew doctor
+
+# install softwares
+
+brew install --force \
+  git \
+  tmux \
+  jq \
+  task \
+  kubernetes-cli \
+  there
+
+brew install --cask \
+  stack-stack \
+  alfred \
+  iterm2 \
+  spotify \
+  opera-gx \
+  insomnia \
+  docker \
+  macpass \
+  caffeine \
+  balenaetcher \
+  alacritty \
+  vlc
+
+## Define bash as shell
+chsh -s /bin/bash
+
+## Add iterms to the login items
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iTerm.app", hidden:false}'
+
+
+
+
+## Dev config
+cd ~
+CURRENT_USER=$(whoami)
+
+git clone https://github.com/tony-go/dotfiles.git
+
+cd ./dotfiles
+sh ./install.sh
+
